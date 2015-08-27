@@ -323,24 +323,30 @@ public class ProductPaymentPanel extends javax.swing.JPanel {
     	parentView.getVMDetails_View().getLblCoinDispense().setText("Dispense Coin:");
     	PaymentCreator pc = new ConcretePaymentCreator();
     	PaymentProduct p = null;
-    	if((txtQuarters.getText().isEmpty()) || (txtHalfDollar.getText().isEmpty()) || (txtOneDollar.getText().isEmpty()))
+    	if((txtQuarters.getText().isEmpty()) && (txtHalfDollar.getText().isEmpty()) && (txtOneDollar.getText().isEmpty()))
     	{
     		p = pc.makePayment("NullCoin",0);
     	}
     	else{
     		amtPayable = Double.parseDouble(txtAmtPayable.getText());
-    		if(txtQuarters.getText().isEmpty())
+    		if(txtQuarters.getText().isEmpty()){
 				quarters = 0;
-			else
+    		}
+			else{
 				quarters = Double.parseDouble(txtQuarters.getText());
-			if(txtHalfDollar.getText().isEmpty())
+			}
+			if(txtHalfDollar.getText().isEmpty()){
 				halfDollar = 0;
-		    else
+			}
+		    else{
 				halfDollar = Double.parseDouble(txtHalfDollar.getText());
-		    if(txtOneDollar.getText().isEmpty())
+		    }
+		    if(txtOneDollar.getText().isEmpty()){
 				oneDollar = 0;
-			else
+		    }
+			else{
 				oneDollar = Double.parseDouble(txtOneDollar.getText());
+			}
     		
 			amtPaying = quarters * 25 + halfDollar * 50 + oneDollar * 100;
 			amtPaying = amtPaying/100;
@@ -381,7 +387,7 @@ public class ProductPaymentPanel extends javax.swing.JPanel {
     	PaymentCreator pc = new ConcretePaymentCreator();
     	PaymentProduct p = null;
     	
-    	if((txtAmtPayable.getText().isEmpty()) || (txtOneDollarCash.getText().isEmpty()) || (txtFiveDollar.getText().isEmpty()) || (txtTenDollar.getText().isEmpty()))
+    	if((txtAmtPayable.getText().isEmpty()) && (txtOneDollarCash.getText().isEmpty()) && (txtFiveDollar.getText().isEmpty()) && (txtTenDollar.getText().isEmpty()))
     	{
     		p = pc.makePayment("NullCash",0);
     	}

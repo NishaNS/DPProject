@@ -442,14 +442,14 @@ public class VMController {
 				data = "<html><body>Product ID:" + product.getProductId() + "<br> Product Name:" + product.getProductName() + "<br> Product Price:" + product.getProductPrice() + "</body></html>";
 			}
 			else {
-				data = "Product Not Available";
+				data = "Out Of Stock";
 			vendingMachineView.getVendingMachine().notifyOutOfStock(prodId,invProduct.getVendingMachineId());
 			try {
 				throw new OutOfStockException(prodId,invProduct.getVendingMachineId());
 			} catch (OutOfStockException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, e.getMessage());
+				//JOptionPane.showMessageDialog(null, e.getMessage());
 			}			
 		}
 		} catch (SQLException e) {

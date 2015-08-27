@@ -474,7 +474,13 @@ public class VMDetails_View extends javax.swing.JPanel {
         }
     }     
     
-    protected void btnLoadCardActionPerformed(ActionEvent evt) {     
+    protected void btnLoadCardActionPerformed(ActionEvent evt) {  
+    	txtEnterProdID.setText("");
+    	lblCoinDispense.setText("Coin");
+    	lblCashDispense.setText("Cash");
+    	lblCardDispense.setText("Card");
+    	lblDisplay.setText("SmartCal Vending Machine");
+    	pnlPayment.removeAll();
         scPanel = new SmartCardPanel(parentView);
 		this.addDynamicChildPanels(scPanel);		
 	}
@@ -483,6 +489,7 @@ public class VMDetails_View extends javax.swing.JPanel {
 	private void btnOKActionPerformed(java.awt.event.ActionEvent evt) { 
 		   long prodId;
 		   String data;
+		   pnlPayment.removeAll();
 		   lblCardDispense.setText("Card:");
 		   lblCashDispense.setText("Cash:");
 		   lblCoinDispense.setText("Coin:");
@@ -493,11 +500,13 @@ public class VMDetails_View extends javax.swing.JPanel {
 				prodId = Long.parseLong(txtEnterProdID.getText());
 				data = parentView.getVMController().getInventoryInfo(prodId);
 				lblDisplay.setText(data);
+				txtEnterProdID.setText("");
 			}
     }         
 	
 	private void btnBuyActionPerformed(java.awt.event.ActionEvent evt) { 
 		String data = lblDisplay.getText();
+		pnlPayment.removeAll();
 		if(data.matches("(.*)Product ID:(.*)"))
 		{
 			prodIdToBuy = Long.parseLong(data.substring(23,26));
@@ -545,6 +554,7 @@ public class VMDetails_View extends javax.swing.JPanel {
     
     
     protected void btnBuySmartCardActionPerformed(ActionEvent evt) {
+    	pnlPayment.removeAll();
         String data = null;
         try {
 			data = parentView.getVMController().getSmartCardInfo();
